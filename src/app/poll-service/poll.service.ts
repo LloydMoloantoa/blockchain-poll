@@ -26,7 +26,7 @@ export class PollService {
     return polls;
   }
 
-  vote(pollId: number, voteNumber: number) {
+  vote(pollId: any, voteNumber: any) {
     this.web3.executeTransaction('vote', pollId, voteNumber);
   }
 
@@ -51,8 +51,8 @@ export class PollService {
       id: parseInt(pollRaw[0]),
       question: pollRaw[1],
       thumbnail: pollRaw[2],
-      results: pollRaw[3].map((vote: string) => parseInt(vote)),
-      options: pollRaw[4].map((opt: string) => toAscii(opt).replace(/\u0000/g, '')),
+      results: pollRaw[3].map((vote: any) => parseInt(vote)),
+      options: pollRaw[4].map((opt: any) => toAscii(opt).replace(/\u0000/g, '')),
       voted:
         voter.votedIds.length &&
         voter.votedIds.find((votedId: number) => votedId === parseInt(pollRaw[0])) !=
